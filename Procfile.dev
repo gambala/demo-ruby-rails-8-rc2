@@ -1,2 +1,2 @@
-web: bin/rails server
+web: bundle exec iodine -p 3000 -w 1 -t 4
 css: bin/rails tailwindcss:watch

@@ -145,6 +145,7 @@ GEM
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
+    iodine (0.7.58)
     irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -215,8 +216,6 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
-    puma (6.4.3)
-      nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.8)
@@ -368,9 +367,9 @@ DEPENDENCIES
   brakeman
   capybara
   debug
+  iodine
   kamal
   propshaft
-  puma (>= 5.0)
   rails!
   rubocop-rails-omakase
   selenium-webdriver
