@@ -9,15 +9,16 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.2.2
-FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
+FROM docker.io/library/ruby:$RUBY_VERSION-alpine AS base
 
 # Rails app lives here
 WORKDIR /rails
 
 # Install base packages
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 sqlite3 && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+RUN apk add --no-cache jemalloc gcompat
+
+# Install tzinfo-data: assets:precompile and rails in boot time need it
+RUN apk add --no-cache tzdata
 
 # Set production environment
 ENV RAILS_ENV="production" \
@@ -29,9 +30,7 @@ ENV RAILS_ENV="production" \
 FROM base AS build
 
 # Install packages needed to build gems
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git pkg-config && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+RUN apk add --no-cache build-base git
 
 # Install application gems
 COPY Gemfile Gemfile.lock vendor ./
@@ -60,10 +59,15 @@ COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
-RUN groupadd --system --gid 1000 rails && \
-    useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
+RUN addgroup --system --gid 1000 rails && \
+    adduser --system rails --uid 1000 --ingroup rails --home /home/rails --shell /bin/sh rails && \
     chown -R rails:rails db log storage tmp
 USER 1000:1000
+
+# Deployment options
+ENV LD_PRELOAD="libjemalloc.so.2" \
+    MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true" \
+    RUBY_YJIT_ENABLE="1"
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
