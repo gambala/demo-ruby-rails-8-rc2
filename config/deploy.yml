@@ -20,9 +20,10 @@ env:
   secret:
     - RAILS_MASTER_KEY
   clear:
-    SOLID_QUEUE_IN_PUMA: true
+    # SOLID_QUEUE_IN_PUMA: true
     # JOB_CONCURRENCY: 3
-    # WEB_CONCURRENCY: 2
+    RAILS_MAX_THREADS: 2
+    WEB_CONCURRENCY: 1
     # DB_HOST: 192.168.0.2
     # RAILS_LOG_LEVEL: debug
 aliases:
