@@ -7,7 +7,7 @@ servers:
 proxy:
   ssl: false
   host: rails-demo.gambala.pro
-  app_port: 3000
+  app_port: 80
   healthcheck:
     interval: 10
     path: /up
