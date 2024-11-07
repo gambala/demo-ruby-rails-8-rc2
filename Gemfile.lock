@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: a7c8a20825be5ac8d96566ec5dbe9daa85568bc8
+  revision: 2cc0a796f581d4d2d5f2bd9f93569f744a0d2785
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -191,7 +191,7 @@ GEM
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
-    psych (5.1.2)
+    psych (5.2.0)
       stringio
     public_suffix (6.0.1)
     raabro (1.4.0)
@@ -201,9 +201,8 @@ GEM
       rack (>= 3.0.0)
     rack-test (2.1.0)
       rack (>= 1.3)
-    rackup (2.1.0)
+    rackup (2.2.0)
       rack (>= 3)
-      webrick (~> 1.8)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -282,7 +281,7 @@ GEM
     sqlite3 (2.2.0-x86_64-darwin)
     sqlite3 (2.2.0-x86_64-linux-gnu)
     sqlite3 (2.2.0-x86_64-linux-musl)
-    stringio (3.1.1)
+    stringio (3.1.2)
     tailwindcss-rails (3.0.0)
       railties (>= 7.0.0)
       tailwindcss-ruby
@@ -293,18 +292,17 @@ GEM
     tailwindcss-ruby (3.4.14-x86_64-darwin)
     tailwindcss-ruby (3.4.14-x86_64-linux)
     thor (1.3.2)
-    timeout (0.4.1)
+    timeout (0.4.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
-    uri (0.13.1)
+    uri (1.0.0)
     useragent (0.16.10)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webrick (1.9.0)
     websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
